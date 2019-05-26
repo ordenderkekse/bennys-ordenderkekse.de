@@ -620,6 +620,7 @@ include '../../includes/header.authed.php';
 															<div class="panel-footer"></div>
 														</div>
 													</div>
+													<!---------->
 													<div class="col-md-6">
 														<div class="panel panel-primary">
 															<div class="panel panel-heading">
@@ -631,7 +632,9 @@ include '../../includes/header.authed.php';
 															</div>
 															<div class="panel-footer"></div>
 														</div>
+													<!-------->
 													</div>
+													<!--------->
 												</div>
 											</div>
 										</div>		
