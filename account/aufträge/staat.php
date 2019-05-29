@@ -3,6 +3,24 @@ session_start();
 include '../../includes/config.php';
 include '../../includes/hasPerms.php';
 
+if(isset($_REQUEST['affID'])){
+	if(isset($_REQUEST['update'])){
+		if(isset($_REQUEST['typus'])){
+			if($_REQUEST['update'] == "bezahlt"){
+				if($_REQUEST['typus'] == "staat"){
+					
+					$ordertoken = htmlspecialchars($_REQUEST['affID']);
+					
+					$sql = "UPDATE staats SET status = 'Bezahlt' WHERE token = '$ordertoken'";
+					$res = $conn->query($sql);
+					header("Location: ?ok");
+					die();
+				}
+			}
+		}
+	}
+}
+
 include '../../includes/header.authed.php';
 
 ?>
@@ -38,6 +56,7 @@ include '../../includes/header.authed.php';
 												$dateoforder = date("d/m/Y G:i ", $row['timestamp']);
 												$employee = $row['employee'];
 												$fraktion = $row['fraktion'];
+												$statuspayment = $row['status'];
 												$resq = "SELECT * FROM staats_kfz WHERE token = '$orderID' LIMIT 1";
 												$res = $conn->query($resq);
 												$flareisbest = substr($row['token'], 0, 10);
@@ -59,7 +78,16 @@ include '../../includes/header.authed.php';
 												echo "<td>$employee</td>\n";
 												$counter++;
 								?>
-								<td><a class="btn btn-success btn-xs" onClick="catchme('<?php echo $orderID; ?>')" href="#">Anschauen</a> <a disabled class="btn btn-success btn-xs" href="">Bearbeiten</a></td>
+								<td>
+													<a class="btn btn-success btn-xs" onClick="catchme('<?php echo $orderID; ?>')" href="#">Anschauen</a> 
+													<?php
+													if($statuspayment == "Unbezahlt"){ ?>
+													<a class="btn btn-danger btn-xs" href="?affID=<?php echo $orderID; ?>&update=bezahlt&typus=staat">Bezahlen</a>
+													<?php } else { ?>
+													<a class="btn btn-success btn-xs" disabled href="#">Bezahlt</a>
+													<?php } ?>
+												</td>
+								
 								<?php
 									echo "</tr>\n";
 											}	 
