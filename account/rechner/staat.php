@@ -3,82 +3,85 @@ session_start();
 include '../../includes/config.php';
 include '../../includes/hasPerms.php';
 
-if($rank == "Praktikant"){
-	header("Location: https://bennys-ordenderkekse.de/account/aufträge/privat");
-	exit;
-}
-
 	if(isset($_REQUEST['type'])){
 		if(isset($_REQUEST['tasks'])){
 			if(isset($_REQUEST['additional'])){
 				if(isset($_REQUEST['besitzer'])){
 					if(isset($_REQUEST['zeichen'])){
-						$zeichen = htmlentities($_REQUEST['zeichen']);
-						$besitzer = htmlentities($_REQUEST['besitzer']);
-						$description = htmlentities($_REQUEST['description']);
-						if($_REQUEST['type'] == ""){
-							header("Location: ?error=type");
-							die();
-							}
-							if($_REQUEST['tasks'] == ""){
-								header("Location: ?error=tasks");
+						if(isset($_REQUEST['div'])){
+							$zeichen = htmlentities($_REQUEST['zeichen']);
+							$besitzer = htmlentities($_REQUEST['besitzer']);
+							$description = htmlentities($_REQUEST['description']);
+							if($_REQUEST['type'] == ""){
+								header("Location: ?error=type");
 								die();
-							}
-							if($_REQUEST['additional'] == ""){
-								header("Location: ?error=additional");
-								die();
-							}
-							if($_REQUEST['besitzer'] == ""){
-								$besitzer = htmlentities("Staat-XX");
-							}
-							if($_REQUEST['zeichen'] == ""){
-								$zeichen = htmlentities("Staat-XX");
-							}
-							
-							$salary = 0; // User Verdienst oder auch das Gemüse auch wens mit "ie" am ende geschrieben wird.
-							$companyprofit = 0; // Firmen Profit
-							
-							$warenkorbID = hash("md5", time());
-							$time = time();
-							$type = htmlentities($_REQUEST['type']);
-							$sql = "INSERT INTO staats(id, token, fraktion, employee, timestamp)VALUES('', '$warenkorbID', '$type', '$username', '$time')";
-							$result = $conn->query($sql);
-							
-							
-							foreach($_REQUEST['tasks'] as $task){
-								$obj = explode("-", $task);
-								$item = htmlentities($obj[0]);
+								}
+								if($_REQUEST['tasks'] == ""){
+									header("Location: ?error=tasks");
+									die();
+								}
+								if($_REQUEST['additional'] == ""){
+									header("Location: ?error=additional");
+									die();
+								}
+								if($_REQUEST['besitzer'] == ""){
+									$besitzer = htmlentities("Staat-XX");
+								}
+								if($_REQUEST['zeichen'] == ""){
+									$zeichen = htmlentities("Staat-XX");
+								}
+								if($_REQUEST['div'] == "Unbezahlt"){
+									$status = "Unbezahlt";
+								} elseif($_REQUEST['div'] == "Bezahlt"){
+									$status = "Bezahlt";
+								} else {
+									$status = "Bezahlt";
+								}
+								$salary = 0; // User Verdienst oder auch das Gemüse auch wens mit "ie" am ende geschrieben wird.
+								$companyprofit = 0; // Firmen Profit
 								
-								$price = htmlentities($obj[1]);
-								$share = htmlentities($obj[2]);
-								
-								$companyprofit = $companyprofit+$share;
-								$salary = $salary+$price-$share;
-								
-								$sql = "INSERT INTO staats_entrys(id, token, item, price, share, timestamp)VALUES('', '$warenkorbID', '$item', '$price', '$share', '$time')";
+								$warenkorbID = hash("md5", time());
+								$time = time();
+								$type = htmlentities($_REQUEST['type']);
+								$sql = "INSERT INTO staats(id, token, fraktion, employee, status, timestamp)VALUES('', '$warenkorbID', '$type', '$username', '$status', '$time')";
 								$result = $conn->query($sql);
-							}
-							
-							$add = explode("-", $_REQUEST['additional']);
-							$addprice = $add[1];
-							$addshare = $add[2];
-							
-							$companyprofit = $companyprofit+$addshare;
-							$salary = $salary+$addprice-$addshare;
-							
-							$companyprofit = $companyprofit+$addshare;
-							
-							$sql = "INSERT INTO staats_entrys(id, token, item, price, share, timestamp)VALUES('', '$warenkorbID', 'Anfahrtspauschale', '$addprice', '$addshare', '$time')";
-							$result = $conn->query($sql);
-							$sql = "INSERT INTO staats_kfz(id, token, besitzer, zeichen, description, timestamp)VALUES('', '$warenkorbID', '$besitzer', '$zeichen', '$description', '$time')";
-							$result = $conn->query($sql);
-							$sql = "UPDATE accounts SET balance = balance + '$salary' WHERE username = '$username'";
-							$res = $conn->query($sql);
-							$sql = "UPDATE accounts SET share = share + '$companyprofit' WHERE username = '$username'";
-							$res = $conn->query($sql);
-							
-							header("Location: $website_url/account/aufträge/staat?token=$warenkorbID");
-							die();
+								
+								
+								foreach($_REQUEST['tasks'] as $task){
+									$obj = explode("-", $task);
+									$item = htmlentities($obj[0]);
+									
+									$price = htmlentities($obj[1]);
+									$share = htmlentities($obj[2]);
+									
+									$companyprofit = $companyprofit+$share;
+									$salary = $salary+$price-$share;
+									
+									$sql = "INSERT INTO staats_entrys(id, token, item, price, share, timestamp)VALUES('', '$warenkorbID', '$item', '$price', '$share', '$time')";
+									$result = $conn->query($sql);
+								}
+								
+								$add = explode("-", $_REQUEST['additional']);
+								$addprice = $add[1];
+								$addshare = $add[2];
+								
+								$companyprofit = $companyprofit+$addshare;
+								$salary = $salary+$addprice-$addshare;
+								
+								$companyprofit = $companyprofit+$addshare;
+								
+								$sql = "INSERT INTO staats_entrys(id, token, item, price, share, timestamp)VALUES('', '$warenkorbID', 'Anfahrtspauschale', '$addprice', '$addshare', '$time')";
+								$result = $conn->query($sql);
+								$sql = "INSERT INTO staats_kfz(id, token, besitzer, zeichen, description, timestamp)VALUES('', '$warenkorbID', '$besitzer', '$zeichen', '$description', '$time')";
+								$result = $conn->query($sql);
+								$sql = "UPDATE accounts SET balance = balance + '$salary' WHERE username = '$username'";
+								$res = $conn->query($sql);
+								$sql = "UPDATE accounts SET share = share + '$companyprofit' WHERE username = '$username'";
+								$res = $conn->query($sql);
+								
+								header("Location: $website_url/account/aufträge/staat?token=$warenkorbID");
+								die();
+						}
 					}
 				}
 			}
@@ -197,7 +200,7 @@ include '../../includes/header.authed.php';
                                     <div class="form-group">
                                         <div class="col-lg-12">
                                             <button type="reset" class="btn btn-default btnreset">Reset</button>
-                                            <button type="submit" class="btn btn-primary">Speichern</button>
+                                            <button type="submit" name="div" value="Unbezahlt" class="btn btn-warning">Auf Monats-Rechnung</button>
                                         </div>
                                     </div>
                                     <?php
