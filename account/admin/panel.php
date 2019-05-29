@@ -155,6 +155,11 @@ include '../../includes/header.authed.php';
 											<div class="panel panel-heading">
 												<center>Website Status</center>
 											</div>
+<?php if($_REQUEST['o']){ echo '<div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><center>Bestell-Bücher   '.str_replace("_", " ", $_REQUEST['o']).'</div></p></center>';} ?>
+<?php if($_REQUEST['w']){ echo '<div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><center>Privat-Auftrags  '.str_replace("_", " ", $_REQUEST['w']).'</div></p></center>';} ?>
+<?php if($_REQUEST['q']){ echo '<div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><center>Staats-Auftrags  '.str_replace("_", " ", $_REQUEST['q']).'</div></p></center>';} ?>
+<?php if($_REQUEST['u']){ echo '<div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><center>Mitarbeiter-'.str_replace("_", " ", $_REQUEST['u']).'</div></p></center>';} ?>
+<?php if($_REQUEST['z']){ echo '<div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><center>Mitarbeiter-'.str_replace("_", " ", $_REQUEST['z']).'</div></p></center>'; } ?>
 											<div class="panel panel-body">
 												<div class="col-md-4">
 													<div class="panel panel-primary">
