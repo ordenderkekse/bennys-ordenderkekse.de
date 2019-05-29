@@ -18,12 +18,27 @@ include '../includes/header.authed.php';
 					
 					<div class="panel-body">
 						<blockquote>
-							<p>UPDATE LOG (26/05/2019 23:00) #8</p>
+							<p>UPDATE LOG (29/05/2019 4:00) #10</p>
 							<p><h3>Alpha Version 1.8.0</h3></br></p>
+                            <p>-<span class="label label-success">ADDED</span> STAATS RECHNER/ INVOICE</p>
+                            <p>-<span class="label label-warning">CHANGED</span> STAATS ORDER BOOK REFACTORED</p>
+							<p>-<span class="label label-warning">CHANGED</span> ADMIN PANEL REFACTORED</p>
+						</blockquote>
+					</div>
+					<div class="panel-body">
+						<blockquote>
+							<p>UPDATE LOG (26/05/2019 14:40) #9</p>
+							<p><h3>Alpha Version 1.7.1</h3></br></p>
+                            <p>-<span class="label label-warning">CHANGED</span> BOSS PANEL REFACTORED</p>
+						</blockquote>
+					</div>
+					<div class="panel-body">
+						<blockquote>
+							<p>UPDATE LOG (26/05/2019 23:00) #8</p>
+							<p><h3>Alpha Version 1.7.0</h3></br></p>
                             <p>-<span class="label label-success">ADDED</span> PRIVAT RECHNER/ INVOICE</p>
-                            <p>-<span class="label label-success">ADDED</span> PRIVAT CONTRACT-BOOK REFACTORED</p>
-                            <p>-<span class="label label-success">ADDED</span> ADD OR REMOVED A CONTRACT PARTNER</p>
-							<p>-<span class="label label-success">ADDED</span> ADMIN PANEL REFACTORED</p>
+                            <p>-<span class="label label-warning">CHANGED</span> PRIVATE ORDER BOOK REFACTORED</p>
+							<p>-<span class="label label-warning">CHANGED</span> ADMIN PANEL REFACTORED</p>
 							<p>-<span class="label label-warning">CHANGED</span> DROBDOWN MENU REFACTORED</p>
 							<p>-<span class="label label-warning">CHANGED</span> DATABASE REFACTORED</p>
                             <p>-<span class="label label-info">FIXED</span> COMPANY PROFIT</p>
@@ -33,8 +48,8 @@ include '../includes/header.authed.php';
 					<div class="panel-body">
 						<blockquote>
 							<p>UPDATE LOG (20/05/2019 22:42) #7</p>
-							<p><h3>Alpha Version 1.7.0</h3></br></p>
-                            <p>-<span class="label label-success">ADDED</span> ADMIN PANEL REFACTORED</p>
+							<p><h3>Alpha Version 1.6.1</h3></br></p>
+                            <p>-<span class="label label-warning">CHANGED</span> ADMIN PANEL REFACTORED</p>
 						</blockquote>
 					</div>
 					<div class="panel-body">
@@ -91,6 +106,7 @@ include '../includes/header.authed.php';
 								<p>-<span class="label label-success">ADDED</span> RADIO DISCIPLINE</p>
                                 <p>-<span class="label label-success">ADDED</span> BLACKBOARD</p>
                                 <p>-<span class="label label-success">ADDED</span> Admin can delete Orders by ID</p>
+								 <p>-<span class="label label-primary">REMOVED</span> TODO LIST</p>
 								<p>-<span class="label label-info">FIXED</span> Authentication</p>
                                 <p>-<span class="label label-info">FIXED</span> Fixed some bugs</p>
 						</blockquote>
