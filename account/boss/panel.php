@@ -94,8 +94,8 @@ include '../../includes/header.authed.php';
 											<div class="panel panel-heading">
 												<center>Firmen Informationen</center>
 											</div>
-											<?php if($_REQUEST['z']){ echo '<div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><center>'.str_replace("_", " ", $_REQUEST['z']).'</div></p></center></br>'; } ?>
-											<?php if($_REQUEST['u']){ echo '<div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><center>'.str_replace("_", " ", $_REQUEST['u']).'</div></p></center></br>'; } ?>
+<?php if($_REQUEST['u']){ echo '<div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><center>Mitarbeiter-'.str_replace("_", " ", $_REQUEST['u']).'</div></p></center>';} ?>
+<?php if($_REQUEST['z']){ echo '<div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><center>Mitarbeiter-'.str_replace("_", " ", $_REQUEST['z']).'</div></p></center>'; } ?>
 											<div class="panel panel-body">
 												<div class="col-md-6">
 													<div class="panel panel-primary">
